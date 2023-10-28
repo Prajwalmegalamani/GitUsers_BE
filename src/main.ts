@@ -1,24 +1,14 @@
-const fastify = require('fastify')();
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-// Register the fastify-cors plugin
-fastify.register(require('fastify-cors'), {
-  origin: true, // You can set this to specific origins or 'true' to allow all origins
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-});
-
-// Your routes and other application logic
-fastify.get('/', (request, reply) => {
-  reply.send({ hello: 'world' });
-});
-
-// Run the server
-fastify.listen(3000, (err, address) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  }
-  console.log(`Server listening on ${address}`);
-});
+async function bootstrap() {
+  const corsConfig = {
+    origin: ['http://localhost:3001', 'https://git-users-fe.vercel.app/'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['*', 'Access-Control-Allow-Origin'],
+  };
+  const app = await NestFactory.create(AppModule);
+  app.enableCors(corsConfig); // You can also pass specific options here if needed
+  await app.listen(3000);
+}
+bootstrap();

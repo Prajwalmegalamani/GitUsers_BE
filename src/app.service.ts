@@ -52,10 +52,6 @@ export class AppService {
       );
 
       const data = response.data;
-      console.log(
-        '🚀 ~ file: app.service.ts:55 ~ AppService ~ getRandomUsers ~ response:',
-        response.data,
-      );
 
       const promises = data.map(async (item: any) => {
         const userDataResponse = await axios.get(item.url, {

@@ -6,13 +6,6 @@
         "use": "@vercel/node"
       }
     ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "src/main.ts",
-        "methods": ["GET"]
-      }
-    ],
     "headers": [
         {
           "source": "/(.*)",
@@ -21,7 +14,7 @@
           ]
         },
         {
-          "source": "/vercel_app_domain_name/(.*)",
+          "source": "/https://git-users-fe.vercel.app/(.*)",
           "headers": [
             { "key": "Access-Control-Allow-Origin", "value": "*" }
           ]

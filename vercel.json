@@ -14,7 +14,7 @@
           ]
         },
         {
-          "source": "https://git-users-fe.vercel.app/(.*)",
+          "source": "/(.*)",
           "headers": [
             { "key": "Access-Control-Allow-Origin", "value": "*" }
           ]
